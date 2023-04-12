@@ -10,7 +10,7 @@ USE HumanFriends;
 8. задание
 
 ```sql
-CREATE TABLE Amimals(
+CREATE TABLE Animals(
    id INT NOT NULL AUTO_INCREMENT,
    title VARCHAR(50),
    PRIMARY KEY(id)
@@ -40,9 +40,9 @@ CREATE TABLE ExecutedСommands(
 
 CREATE TABLE Dogs(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pets INT
+   id_pets INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -52,9 +52,9 @@ CREATE TABLE Dogs(
 
 CREATE TABLE Cats(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pets INT
+   id_pets INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -64,9 +64,9 @@ CREATE TABLE Cats(
 
 CREATE TABLE Hamsters(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pets INT
+   id_pets INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -76,9 +76,9 @@ CREATE TABLE Hamsters(
 
 CREATE TABLE Horses(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pack_animals INT
+   id_pack_animals INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -88,9 +88,9 @@ CREATE TABLE Horses(
 
 CREATE TABLE Camels(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pack_animals INT
+   id_pack_animals INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -100,9 +100,9 @@ CREATE TABLE Camels(
 
 CREATE TABLE Donkeys(
    id INT NOT NULL AUTO_INCREMENT,
-   id_pack_animals INT
+   id_pack_animals INT,
    nickname VARCHAR(50),
-   breed VARCHAR(50)
+   breed VARCHAR(50),
    DateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
@@ -114,8 +114,8 @@ CREATE TABLE Donkeys(
 9. задание
 
 ```sql
-INSERT Amimals(title) VALUES("Домашнее животное"); -- 1
-INSERT Amimals(title) VALUES("Въючное животное");  -- 2
+INSERT Animals(title) VALUES("Домашнее животное"); -- 1
+INSERT Animals(title) VALUES("Въючное животное");  -- 2
 
 INSERT Pets(id_animal, name) VALUES(1, "Собака");  -- 1
 INSERT Pets(id_animal, name) VALUES(1, "Кошка");   -- 2
@@ -152,10 +152,9 @@ VALUES(1, "Иа", "Безпородный", "2019-06-13", 7);
 10. задание
 
 ```sql
-SET FOREIGN_KEY_CHECKS = 0;
-DELETE Camels;
-SET FOREIGN_KEY_CHECKS = 1;
+DELETE FROM Camels;
 
+CREATE TABLE HorsesAndDonkeys AS
 SELECT * FROM Horses
 UNION
 SELECT * FROM Donkeys;
@@ -164,5 +163,34 @@ SELECT * FROM Donkeys;
 11. задание
 
 ```sql
+CREATE TABLE YoungAnimals AS
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Dogs
+UNION
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Cats
+UNION
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Hamsters
+UNION
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Horses
+UNION
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Camels
+UNION
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Donkeys
+WHERE TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) BETWEEN 12 AND 36;
+```
 
+12. задание
+
+```sql
+CREATE TABLE NewAnimals AS
+SELECT nickname, breed, DateOfBirth, 'Dogs' AS oldTable FROM Dogs
+UNION
+SELECT nickname, breed, DateOfBirth, 'Cats' AS oldTable FROM Cats
+UNION
+SELECT nickname, breed, DateOfBirth, 'Hamsters' AS oldTable FROM Hamsters
+UNION
+SELECT nickname, breed, DateOfBirth, 'Horses' AS oldTable FROM Horses
+UNION
+SELECT nickname, breed, DateOfBirth, 'Camels' AS oldTable FROM Camels
+UNION
+SELECT nickname, breed, DateOfBirth, 'Donkeys' AS oldTable FROM Donkeys;
 ```
