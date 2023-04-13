@@ -1,16 +1,29 @@
-import ConstructAnimals.Cats;
-import ConstructAnimals.Dogs;
-import ConstructAnimals.Horses;
+import ConstructAnimals.*;
+
+import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
+    private String nickname;
+    private String breed;
+    private Date dateOfBirth;
+
+    Dogs dogs = new Dogs(nickname, breed, dateOfBirth);
+    Cats cats = new Cats(nickname, breed, dateOfBirth);
+    Hamsters hamsters = new Hamsters(nickname, breed, dateOfBirth);
+    Horses horses = new Horses(nickname, breed, dateOfBirth);
+    Camels camels = new Camels(nickname, breed, dateOfBirth);
+    Donkeys donkeys = new Donkeys(nickname, breed, dateOfBirth);
+
     public static void main(String[] args) {
-        Dogs dog = new Dogs("Бим", "Далматинец", 1);
-        System.out.println(dog);
-        Cats cat = new Cats("Барсик", "Британец", 4);
-        System.out.println(cat);
-        Horses horse = new Horses("Вихорь", "Русак", 2);
-        System.out.println(horse);
-        System.out.println(horse.getTitle());
-        System.out.println(horse.getName());
+
+    }
+
+    public void inputAnimals() {
+        Scanner input = new Scanner(System.in);
+        this.nickname = input.next();
+        this.breed = input.next();
+        this.dateOfBirth = input.nextLine();
+        System.out.println(dogs);
     }
 }
