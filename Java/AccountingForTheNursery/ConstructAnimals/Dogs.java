@@ -1,13 +1,13 @@
 package ConstructAnimals;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Dogs extends Pets {
     private String nickname;
     private String breed;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Dogs(String nickname, String breed, Date dateOfBirth) {
+    public Dogs(String nickname, String breed, LocalDate dateOfBirth) {
         super("Собака");
         this.nickname = nickname;
         this.breed = breed;
@@ -16,6 +16,6 @@ public class Dogs extends Pets {
 
     @Override
     public String toString() {
-        return getTitle() + " " + getName() + " кличка " + nickname + " порода " + breed + " возраст " + dateOfBirth;
+        return getTitle() + " " + getName() + " кличка " + nickname + " порода " + breed + " дата рождения " + dateOfBirth;
     }
 }

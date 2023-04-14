@@ -1,13 +1,13 @@
 package ConstructAnimals;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Donkeys extends PackAnimals {
     private String nickname;
     private String breed;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Donkeys(String nickname, String breed, Date dateOfBirth) {
+    public Donkeys(String nickname, String breed, LocalDate dateOfBirth) {
         super("Осёл");
         this.nickname = nickname;
         this.breed = breed;

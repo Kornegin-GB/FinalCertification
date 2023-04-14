@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.*;
 
 public class UserInterface {
 
@@ -62,20 +60,29 @@ public class UserInterface {
         return animalsMenu;
     }
 
-    public void inputDataAnimals() {
-        try {
-            Scanner input = new Scanner(System.in);
-            System.out.print("Введите кличку: ");
-            String nickname = input.nextLine();
-            System.out.print("Введите породу: ");
-            String breed = input.nextLine();
-            while (true) {
-                System.out.print("Введите дату рождения в формате(год-месяц-день): ");
-                String date = input.nextLine();
-
+    public Map<String, String> inputDataAnimals() {
+        Map<String, String> dataAnimals = new HashMap<>();
+        Scanner input = new Scanner(System.in);
+        System.out.print("Введите кличку: ");
+        dataAnimals.put("nickname", input.nextLine());
+        System.out.print("Введите породу: ");
+        dataAnimals.put("breed", input.nextLine());
+        int dey = 0;
+        int month = 0;
+        int year = 0;
+        while (true) {
+            try {
+                System.out.print("Введите день рождения: ");
+                dey = input.nextInt();
+                System.out.print("Введите месяц рождения: ");
+                month = input.nextInt();
+                System.out.print("Введите год рождения: ");
+                year = input.nextInt();
+                dataAnimals.put("dateOfBirth", LocalDate.of(year, month, dey).toString());
+            } catch (InputMismatchException e) {
+                System.out.println("Вы ввели не цифру");
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Вы ввели не цифру");
+            return dataAnimals;
         }
     }
 }
