@@ -1,15 +1,14 @@
 import ConstructAnimals.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
     UserInterface ui = new UserInterface();
     Modul_db md = new Modul_db();
     private Map<String, String> dataAnimals;
-    private String nickname;
-    private String breed;
-    private LocalDate dateOfBirth;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -123,7 +122,7 @@ public class Main {
     public void runAnimalsMenu() {
         ui.showMenu(ui.animalsMenu());
         while (true) {
-            switch (ui.inputUserMenu(ui.animalsMenuCreate())) {
+            switch (ui.inputUserMenu(ui.animalsMenu())) {
                 case 1 -> {
                     System.out.println("Данные о Собаках");
                     md.readeFile("dogs");
@@ -131,26 +130,41 @@ public class Main {
                 }
                 case 2 -> {
                     System.out.println("Данные о Кошках");
+                    md.readeFile("cats");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 3 -> {
                     System.out.println("Данные о Хомяках");
+                    md.readeFile("hamsters");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 4 -> {
                     System.out.println("Данные о Лошадях");
+                    md.readeFile("horses");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 5 -> {
                     System.out.println("Данные о Верблюдах");
+                    md.readeFile("camels");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 6 -> {
                     System.out.println("Данные о Ослах");
+                    md.readeFile("donkeys");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 7 -> {
                     System.out.println("Данные о всех животных");
+                    List<String> nameFile = new ArrayList<>();
+                    nameFile.add("dogs");
+                    nameFile.add("cats");
+                    nameFile.add("hamsters");
+                    nameFile.add("horses");
+                    nameFile.add("camels");
+                    nameFile.add("donkeys");
+                    for (String name : nameFile) {
+                        md.readeFileAll(name);
+                    }
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 8 -> {

@@ -16,6 +16,6 @@ public class Donkeys extends PackAnimals {
 
     @Override
     public String toString() {
-        return getName() + " кличка " + nickname + " порода " + breed + " возраст " + dateOfBirth;
+        return getName() + " кличка " + nickname + " порода " + breed + " дата рождения " + dateOfBirth;
     }
 }
