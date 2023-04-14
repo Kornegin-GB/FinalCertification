@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Main {
     UserInterface ui = new UserInterface();
+    Modul_db md = new Modul_db();
     private Map<String, String> dataAnimals;
     private String nickname;
     private String breed;
@@ -51,7 +52,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(dogs);
+                    System.out.println("Данные о собаке внесены");
+                    md.createFile("dogs", dogs.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 2 -> {
@@ -61,7 +63,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(cats);
+                    System.out.println("Данные о кошке внесены");
+                    md.createFile("cats", cats.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 3 -> {
@@ -71,7 +74,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(hamsters);
+                    System.out.println("Данные о хомяке внесены");
+                    md.createFile("hamsters", hamsters.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 4 -> {
@@ -81,7 +85,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(horses);
+                    System.out.println("Данные о лошади внесены");
+                    md.createFile("horses", horses.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 5 -> {
@@ -91,7 +96,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(camels);
+                    System.out.println("Данные о верблюде внесены");
+                    md.createFile("camels", camels.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 6 -> {
@@ -101,7 +107,8 @@ public class Main {
                             dataAnimals.get("nickname"),
                             dataAnimals.get("breed"),
                             LocalDate.parse(dataAnimals.get("dateOfBirth")));
-                    System.out.println(donkeys);
+                    System.out.println("Данные об осле внесены");
+                    md.createFile("donkeys", donkeys.toString());
                     ui.showMenu(ui.animalsMenuCreate());
                 }
                 case 7 -> {
@@ -118,26 +125,33 @@ public class Main {
         while (true) {
             switch (ui.inputUserMenu(ui.animalsMenuCreate())) {
                 case 1 -> {
-                    System.out.println("Данные Собаки");
+                    System.out.println("Данные о Собаках");
+                    md.readeFile("dogs");
                     ui.showMenu(ui.animalsMenu());
                 }
                 case 2 -> {
-                    System.out.println("Данные Кошки");
+                    System.out.println("Данные о Кошках");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 3 -> {
-                    System.out.println("Данные Хомяка");
+                    System.out.println("Данные о Хомяках");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 4 -> {
-                    System.out.println("Данные Лошади");
+                    System.out.println("Данные о Лошадях");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 5 -> {
-                    System.out.println("Данные Верблюда");
+                    System.out.println("Данные о Верблюдах");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 6 -> {
-                    System.out.println("Данные Осла");
+                    System.out.println("Данные о Ослах");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 7 -> {
-                    System.out.println("Все данные");
+                    System.out.println("Данные о всех животных");
+                    ui.showMenu(ui.animalsMenu());
                 }
                 case 8 -> {
                     ui.showMenu(ui.mainMenu());

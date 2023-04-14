@@ -16,6 +16,6 @@ public class Hamsters extends Pets {
 
     @Override
     public String toString() {
-        return getTitle() + " " + getName() + " кличка " + nickname + " порода " + breed + " возраст " + dateOfBirth;
+        return getName() + " кличка " + nickname + " порода " + breed + " возраст " + dateOfBirth;
     }
 }
