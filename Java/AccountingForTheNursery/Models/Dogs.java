@@ -7,6 +7,6 @@ public class Dogs extends Pets {
 
     @Override
     public String toString() {
-        return getPet() + " - " + getTitle() + ": кличка" + getName() + " порода " + getBreed() + " дата рождения " + getDateOfBirth();
+        return getPet() + " - " + getTitle() + ": кличка " + getName() + ", порода " + getBreed() + ", дата рождения " + getDateOfBirth();
     }
 }
