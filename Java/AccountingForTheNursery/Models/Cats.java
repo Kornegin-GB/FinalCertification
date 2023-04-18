@@ -9,4 +9,8 @@ public class Cats extends Pets {
     public String toString() {
         return getPet() + " - " + getTitle() + ": кличка " + getName() + ", порода " + getBreed() + ", дата рождения " + getDateOfBirth();
     }
+
+    public String toStringNew() {
+        return getName() + "," + getBreed() + "," + getDateOfBirth();
+    }
 }

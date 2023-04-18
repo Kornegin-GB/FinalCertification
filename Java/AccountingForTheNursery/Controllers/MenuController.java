@@ -1,36 +1,40 @@
 package Controllers;
 
-import Models.*;
-import Views.UserMenu;
+import Views.UserInterface;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuController {
-    UserMenu userMenu = new UserMenu();
-    private String[] dateAnimals;
+    UserInterface userInterface = new UserInterface();
+    ControlAnimalsCreate controlAnimalsCreate = new ControlAnimalsCreate();
+    DataBase dataBase = new DataBase();
 
     public void controlMainMenu() {
         while (true) {
-            userMenu.showMenu(userMenu.mainMenu(), "ГЛАВНОЕ МЕНЮ");
-            int number = userMenu.selectingMenuNumber(userMenu.mainMenu());
+            userInterface.showMenu(userInterface.mainMenu(), "ГЛАВНОЕ МЕНЮ");
+            int number = userInterface.selectingMenuNumber();
             switch (number) {
                 case 1 -> {
                     System.out.println("\nРаздел записи в справочник");
-                    userMenu.showMenu(userMenu.animalMenu(), "МЕНЮ ВЫБОРА СПРАВОЧНИКА");
-                    controlAnimalsMenu();
+                    controlAnimalsMenu(number);
                 }
                 case 2 -> {
                     System.out.println("\nРаздел чтения справочника");
-                    userMenu.showMenu(userMenu.animalMenu(), "МЕНЮ ВЫБОРА СПРАВОЧНИКА");
-                    controlAnimalsMenu();
+                    controlAnimalsMenu(number);
                 }
                 case 3 -> {
                     System.out.println("\nДанные обо всех животных");
+                    System.out.println("\nЗАПИСИ ВСЕХ СПРАВОЧНИКОВ");
+                    List<String[]> listDirectory = new ArrayList<>();
+                    for (String name : userInterface.createListAnimals()) {
+                        listDirectory.addAll(dataBase.fileReading(name));
+                    }
+                    userInterface.showEntryAll(listDirectory);
                 }
                 case 4 -> {
                     System.out.println("\nРаздел добавления изученной команды");
-                    userMenu.showMenu(userMenu.animalMenu(), "МЕНЮ ВЫБОРА СПРАВОЧНИКА");
-                    controlAnimalsMenu();
+                    controlAnimalsMenu(number);
                 }
                 case 5 -> {
                     System.out.println("\nЗавершение программы...");
@@ -41,60 +45,75 @@ public class MenuController {
         }
     }
 
-    public void controlAnimalsMenu() {
+    public void controlAnimalsMenu(int numberMainMenu) {
         while (true) {
-            switch (userMenu.selectingMenuNumber(userMenu.animalMenu())) {
+            userInterface.showMenu(userInterface.animalMenu(), "МЕНЮ ВЫБОРА СПРАВОЧНИКА");
+            int numberMenuAnimals = userInterface.selectingMenuNumber();
+            switch (numberMenuAnimals) {
                 case 1 -> {
                     String title = "dogs";
-                    Dogs dogs = new Dogs();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    dogs.setName(dateAnimals[0]);
-                    dogs.setBreed(dateAnimals[1]);
-                    dogs.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
+                    }
                 }
                 case 2 -> {
                     String title = "cats";
-                    Cats cats = new Cats();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    cats.setName(dateAnimals[0]);
-                    cats.setBreed(dateAnimals[1]);
-                    cats.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
+                    }
                 }
                 case 3 -> {
                     String title = "hamsters";
-                    Hamsters hamsters = new Hamsters();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    hamsters.setName(dateAnimals[0]);
-                    hamsters.setBreed(dateAnimals[1]);
-                    hamsters.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
+                    }
                 }
                 case 4 -> {
                     String title = "horses";
-                    Horses horses = new Horses();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    horses.setName(dateAnimals[0]);
-                    horses.setBreed(dateAnimals[1]);
-                    horses.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
+                    }
                 }
                 case 5 -> {
                     String title = "camels";
-                    Camels camels = new Camels();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    camels.setName(dateAnimals[0]);
-                    camels.setBreed(dateAnimals[1]);
-                    camels.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
+                    }
                 }
                 case 6 -> {
                     String title = "donkeys";
-                    Donkeys donkeys = new Donkeys();
-                    dateAnimals = userMenu.enteringDataAnimal();
-                    donkeys.setName(dateAnimals[0]);
-                    donkeys.setBreed(dateAnimals[1]);
-                    if (dateAnimals != null) {
-                        donkeys.setDateOfBirth(LocalDate.parse(dateAnimals[2]));
+                    if (numberMainMenu == 1) {
+                        controlAnimalsCreate.createRecordsAnimals(numberMenuAnimals, title);
+                    } else if (numberMainMenu == 2) {
+                        userInterface.showEntry(dataBase.fileReading(title), title);
+                    } else if (numberMainMenu == 4) {
+                        //TODO: Реализовать раздел
                     }
                 }
-                default -> userMenu.showMenu(userMenu.mainMenu(), "ГЛАВНОЕ МЕНЮ");
+                case 7 -> {
+                    return;
+                }
+                default -> System.out.println("Нет такого пункта меню\n");
             }
         }
     }
