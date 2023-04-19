@@ -7,10 +7,6 @@ public class PackAnimals extends Animals {
     private String breed;
     private LocalDate dateOfBirth;
 
-    public PackAnimals() {
-        String animalsClass = getPackAnimals();
-    }
-
     public String getName() {
         return name;
     }

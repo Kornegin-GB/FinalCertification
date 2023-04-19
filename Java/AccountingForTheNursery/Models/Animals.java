@@ -1,16 +1,14 @@
 package Models;
 
 public class Animals {
-    private String Pet = "Домашнее животное";
-    private String PackAnimals = "Вьючное животное";
-    private String title = "Вьючное животное";
+    private String title;
 
     public String getPet() {
-        return Pet;
+        return "Домашнее животное";
     }
 
     public String getPackAnimals() {
-        return PackAnimals;
+        return "Вьючное животное";
     }
 
     public String getTitle() {

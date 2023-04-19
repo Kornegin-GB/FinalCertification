@@ -7,10 +7,6 @@ public class Pets extends Animals {
     private String breed;
     private LocalDate dateOfBirth;
 
-    public Pets() {
-        String animalsClass = getPet();
-    }
-
     public String getName() {
         return name;
     }
