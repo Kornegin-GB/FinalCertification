@@ -16,7 +16,7 @@ public class DataBase {
         }
     }
 
-    public List<String[]> fileReading(String name) {
+    public List<String[]> fileReading(String name, String title) {
         List<String[]> entry = new ArrayList<>();
         if (!thereIsFile(name)) {
             String[] txt = new String[]{"Файл не существует"};
@@ -26,8 +26,15 @@ public class DataBase {
         try (FileReader fileReader = new FileReader(name + ".csv")) {
             StringBuilder sb = new StringBuilder();
             int c;
+            int i = 1;
             while ((c = fileReader.read()) != -1) {
                 if (c == 10) {
+                    if (name.contains("Commands")) {
+                        sb.append("," + title);
+                    } else {
+                        sb.append("," + title + "," + i);
+                        i++;
+                    }
                     entry.add(sb.toString().split(","));
                     sb.delete(0, sb.length());
                 } else {

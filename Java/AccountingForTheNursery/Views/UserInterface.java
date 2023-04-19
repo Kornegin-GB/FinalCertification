@@ -35,6 +35,23 @@ public class UserInterface {
         return numberMenu;
     }
 
+    public int selectingEntryNumber(List<String[]> data) {
+        int numberEntry = 0;
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Выберите номер записи: ");
+            numberEntry = scanner.nextInt();
+            if (numberEntry < 1 || numberEntry > data.size()) {
+                System.out.println("Нет такой записи");
+                return 0;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели не число\n");
+            return 0;
+        }
+        return numberEntry;
+    }
+
     public List<String> mainMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Внести запись о животном");
@@ -97,7 +114,13 @@ public class UserInterface {
         }
     }
 
-    public void showEntry(List<String[]> data, String title) {
+    public String enteringCommand() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите изученную команду: ");
+        return scanner.nextLine();
+    }
+
+    public void showEntry(List<String[]> data, String title, List<String[]> commands) {
         String name = "";
         int i = 1;
         switch (title) {
@@ -110,18 +133,66 @@ public class UserInterface {
         }
         System.out.println("\nЗАПИСИ СПРАВОЧНИКА " + name);
         for (String[] entry : data) {
-            if (entry.length == 3) {
-                System.out.println(i + ") Кличка: " + entry[0] + ", Порода: " + entry[1] + ", Дата рождения: " + entry[2]);
+            if (entry.length > 1) {
+                System.out.print(i + ") Кличка: " + entry[0] + ", Порода: " + entry[1] + ", Дата рождения: " + entry[2]);
+                System.out.print(" Изученные команды:");
+                int n = 0;
+                for (String[] command : commands) {
+                    if (command[0].equals(String.valueOf(i))) {
+                        if (n == 0) {
+                            System.out.print(" " + command[1]);
+                            n++;
+                        } else {
+                            System.out.print(", " + command[1]);
+                        }
+                    }
+                }
+                System.out.println();
                 i++;
             }
         }
     }
 
-    public void showEntryAll(List<String[]> data) {
+    public void showEntryOne(String[] entry, List<String[]> commands, int numberEntry) {
+        System.out.println("\nВЫБРАННАЯ ЗАПИСЬ");
+        if (entry.length > 1) {
+            System.out.print("Кличка: " + entry[0] + ", Порода: " + entry[1] + ", Дата рождения: " + entry[2]);
+            System.out.print(" Изученные команды:");
+            int n = 0;
+            for (String[] command : commands) {
+                if (command[0].equals(String.valueOf(numberEntry))) {
+                    if (n == 0) {
+                        System.out.print(" " + command[1]);
+                        n++;
+                    } else {
+                        System.out.print(", " + command[1]);
+                    }
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void showEntryAll(List<String[]> data, List<String[]> commands) {
         int i = 1;
         for (String[] entry : data) {
-            if (entry.length == 3) {
-                System.out.println(i + ") Кличка: " + entry[0] + ", Порода: " + entry[1] + ", Дата рождения: " + entry[2]);
+            if (entry.length > 1) {
+                System.out.print(i + ") Кличка: " + entry[0] + ", Порода: " + entry[1] + ", Дата рождения: " + entry[2]);
+                System.out.print(" Изученные команды:");
+                int n = 0;
+                for (String[] command : commands) {
+                    if (command[2].equals(entry[3])) {
+                        if (command[0].equals(entry[4])) {
+                            if (n == 0) {
+                                System.out.print(" " + command[1]);
+                                n++;
+                            } else {
+                                System.out.print(", " + command[1]);
+                            }
+                        }
+                    }
+                }
+                System.out.println();
                 i++;
             }
         }
