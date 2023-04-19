@@ -43,7 +43,7 @@ CREATE TABLE Dogs(
    id_pets INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pets) REFERENCES Pets(id),
@@ -55,7 +55,7 @@ CREATE TABLE Cats(
    id_pets INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pets) REFERENCES Pets(id),
@@ -67,7 +67,7 @@ CREATE TABLE Hamsters(
    id_pets INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pets) REFERENCES Pets(id),
@@ -79,7 +79,7 @@ CREATE TABLE Horses(
    id_pack_animals INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pack_animals) REFERENCES PackAnimals(id),
@@ -91,7 +91,7 @@ CREATE TABLE Camels(
    id_pack_animals INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pack_animals) REFERENCES PackAnimals(id),
@@ -103,7 +103,7 @@ CREATE TABLE Donkeys(
    id_pack_animals INT,
    nickname VARCHAR(50),
    breed VARCHAR(50),
-   DateOfBirth DATE,
+   dateOfBirth DATE,
    id_comands INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_pack_animals) REFERENCES PackAnimals(id),
@@ -133,19 +133,19 @@ INSERT ExecutedСommands(team) VALUES("Спать");       -- 5
 INSERT ExecutedСommands(team) VALUES("Есть");        -- 6
 INSERT ExecutedСommands(team) VALUES("Кричать");     -- 7
 
-INSERT Dogs(id_pets, nickname, breed, DateOfBirth, id_comands)
+INSERT Dogs(id_pets, nickname, breed, dateOfBirth, id_comands)
 VALUES(1, "Бобик", "Дворянин", "2021-12-05", 1);
-INSERT Dogs(id_pets, nickname, breed, DateOfBirth, id_comands)
+INSERT Dogs(id_pets, nickname, breed, dateOfBirth, id_comands)
 VALUES(1, "Бобик", "Дворянин", "2022-12-05", 2);
-INSERT Cats(id_pets, nickname, breed, DateOfBirth, id_comands)
+INSERT Cats(id_pets, nickname, breed, dateOfBirth, id_comands)
 VALUES(2, "Барсик", "Шотландец", "2023-01-14", 5);
-INSERT Hamsters(id_pets, nickname, breed, DateOfBirth, id_comands)
+INSERT Hamsters(id_pets, nickname, breed, dateOfBirth, id_comands)
 VALUES(3, "Хомка", "Беспородный", "2022-11-12", 6);
-INSERT Horses(id_pack_animals, nickname, breed, DateOfBirth, id_comands)
+INSERT Horses(id_pack_animals, nickname, breed, dateOfBirth, id_comands)
 VALUES(1, "Вихрь", "Русак", "2021-11-15", 3);
-INSERT Camels(id_pack_animals, nickname, breed, DateOfBirth, id_comands)
+INSERT Camels(id_pack_animals, nickname, breed, dateOfBirth, id_comands)
 VALUES(1, "Горбик", "Беспородный", "2020-03-18", 4);
-INSERT Donkeys(id_pack_animals, nickname, breed, DateOfBirth, id_comands)
+INSERT Donkeys(id_pack_animals, nickname, breed, dateOfBirth, id_comands)
 VALUES(1, "Иа", "Безпородный", "2019-06-13", 7);
 ```
 
@@ -164,17 +164,17 @@ SELECT * FROM Donkeys;
 
 ```sql
 CREATE TABLE YoungAnimals AS
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Dogs
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Dogs
 UNION
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Cats
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Cats
 UNION
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Hamsters
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Hamsters
 UNION
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Horses
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Horses
 UNION
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Camels
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Camels
 UNION
-SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, DateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, DateOfBirth, NOW())), " м") AS age FROM Donkeys
+SELECT *, CONCAT(TIMESTAMPDIFF(YEAR, dateOfBirth, NOW()), " г ", TIMESTAMPDIFF(MONTH, dateOfBirth, NOW()) - (12 * TIMESTAMPDIFF(YEAR, dateOfBirth, NOW())), " м") AS age FROM Donkeys
 WHERE TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) BETWEEN 12 AND 36;
 ```
 
@@ -182,15 +182,15 @@ WHERE TIMESTAMPDIFF(MONTH, DateOfBirth, NOW()) BETWEEN 12 AND 36;
 
 ```sql
 CREATE TABLE NewAnimals AS
-SELECT nickname, breed, DateOfBirth, 'Dogs' AS oldTable FROM Dogs
+SELECT nickname, breed, dateOfBirth, 'Dogs' AS oldTable FROM Dogs
 UNION
-SELECT nickname, breed, DateOfBirth, 'Cats' AS oldTable FROM Cats
+SELECT nickname, breed, dateOfBirth, 'Cats' AS oldTable FROM Cats
 UNION
-SELECT nickname, breed, DateOfBirth, 'Hamsters' AS oldTable FROM Hamsters
+SELECT nickname, breed, dateOfBirth, 'Hamsters' AS oldTable FROM Hamsters
 UNION
-SELECT nickname, breed, DateOfBirth, 'Horses' AS oldTable FROM Horses
+SELECT nickname, breed, dateOfBirth, 'Horses' AS oldTable FROM Horses
 UNION
-SELECT nickname, breed, DateOfBirth, 'Camels' AS oldTable FROM Camels
+SELECT nickname, breed, dateOfBirth, 'Camels' AS oldTable FROM Camels
 UNION
-SELECT nickname, breed, DateOfBirth, 'Donkeys' AS oldTable FROM Donkeys;
+SELECT nickname, breed, dateOfBirth, 'Donkeys' AS oldTable FROM Donkeys;
 ```
